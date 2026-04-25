@@ -1984,3 +1984,687 @@
   text-transform: uppercase;
   margin-top: 1.25rem;
 }
+
+/* ============================================
+   SHOP PAGE
+   ============================================ */
+
+.shop-hero {
+  background: var(--ink);
+  color: var(--cream);
+  padding: 9rem 0 5rem;
+  position: relative;
+  overflow: hidden;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+}
+.shop-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse at 30% 50%, black 0%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at 30% 50%, black 0%, transparent 80%);
+  pointer-events: none;
+}
+.shop-hero::after {
+  content: '';
+  position: absolute;
+  top: 50%; right: -150px;
+  transform: translateY(-50%);
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, var(--green-glow) 0%, transparent 60%);
+  pointer-events: none;
+}
+.shop-hero-inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+.shop-hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 5rem;
+  align-items: center;
+}
+@media (max-width: 1024px) {
+  .shop-hero-grid { grid-template-columns: 1fr; gap: 3rem; }
+}
+.shop-hero-eyebrow {
+  color: var(--green);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+.shop-hero-eyebrow::before {
+  content: '';
+  width: 32px; height: 1px;
+  background: var(--green);
+}
+.shop-hero h1 {
+  font-size: var(--fs-display);
+  font-weight: 500;
+  line-height: 0.9;
+  letter-spacing: -0.035em;
+  margin-bottom: 1.75rem;
+}
+.shop-hero h1 .italic { color: var(--green); font-weight: 400; }
+.shop-hero p {
+  font-size: 1.125rem;
+  color: var(--cream-dim);
+  max-width: 520px;
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+}
+
+/* Hoodie mockup */
+.hoodie-mockup {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  aspect-ratio: 1 / 1.15;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hoodie-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(145deg, #0A0A0A 0%, #1a1a1a 100%);
+  border-radius: 8px;
+  padding: 3rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow:
+    0 40px 80px rgba(0, 0, 0, 0.5),
+    inset 0 0 60px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  transition: transform 0.5s;
+}
+.hoodie-card:hover { transform: scale(1.02); }
+.hoodie-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 30% 20%, rgba(255, 255, 255, 0.06), transparent 50%);
+  pointer-events: none;
+}
+.hoodie-text {
+  font-family: 'Fraunces', serif;
+  color: var(--cream);
+  text-align: center;
+  z-index: 2;
+  line-height: 0.95;
+}
+.ht-line-1 {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  display: block;
+}
+.ht-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 1rem 0;
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  color: var(--cream);
+  font-weight: 400;
+}
+.ht-divider::before,
+.ht-divider::after {
+  content: '';
+  height: 2px;
+  background: var(--cream);
+  flex: 1;
+  max-width: 80px;
+}
+.ht-line-2 {
+  font-size: clamp(1.25rem, 3.5vw, 2rem);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  display: block;
+}
+.hoodie-tag {
+  position: absolute;
+  top: 1.5rem; right: 1.5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--cream-mid);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  z-index: 2;
+}
+.hoodie-price {
+  position: absolute;
+  bottom: 1.5rem; left: 1.5rem;
+  font-family: 'Fraunces', serif;
+  font-size: 1.25rem;
+  color: var(--green);
+  font-weight: 600;
+  z-index: 2;
+}
+
+/* Drop / product grid */
+.shop-drop { background: var(--cream); padding: 7rem 0; }
+.shop-drop-head {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: end;
+  margin-bottom: 5rem;
+}
+@media (max-width: 900px) {
+  .shop-drop-head { grid-template-columns: 1fr; gap: 1.5rem; }
+}
+.shop-drop-head h2 {
+  font-size: var(--fs-h1);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+.shop-drop-head h2 .italic { color: var(--green-deep); font-weight: 400; }
+.shop-drop-head p {
+  font-size: 1.0625rem;
+  color: var(--ink-mid);
+  line-height: 1.6;
+  max-width: 440px;
+}
+
+.shop-product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+@media (max-width: 900px) {
+  .shop-product-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .shop-product-grid { grid-template-columns: 1fr; }
+}
+.shop-product {
+  background: var(--cream);
+  border: 1px solid var(--ink);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.35s, box-shadow 0.35s;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+}
+.shop-product:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(10, 36, 38, 0.15);
+}
+.shop-product-visual {
+  aspect-ratio: 1 / 1.1;
+  background: #0A0A0A;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+}
+.shop-product-visual.cream { background: var(--cream-dim); }
+.shop-product-visual.cream .shop-product-art { color: var(--ink); }
+.shop-product-visual::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 30% 20%, rgba(255, 255, 255, 0.05), transparent 50%);
+  pointer-events: none;
+}
+.shop-product-visual.cream::before {
+  background: radial-gradient(ellipse at 30% 20%, rgba(0, 0, 0, 0.03), transparent 50%);
+}
+.shop-product-art {
+  font-family: 'Fraunces', serif;
+  color: var(--cream);
+  text-align: center;
+  line-height: 0.95;
+  z-index: 1;
+}
+.spa-line-1 {
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 700;
+  display: block;
+  letter-spacing: -0.02em;
+}
+.spa-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0.6rem 0;
+  font-style: italic;
+  font-size: clamp(0.7rem, 1.5vw, 0.95rem);
+  font-weight: 400;
+}
+.spa-div::before,
+.spa-div::after {
+  content: '';
+  height: 1.5px;
+  background: currentColor;
+  flex: 1;
+  max-width: 50px;
+}
+.spa-line-2 {
+  font-size: clamp(0.875rem, 2vw, 1.125rem);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  display: block;
+}
+.shop-product-badge {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  background: var(--green);
+  color: var(--ink-deep);
+  padding: 0.3rem 0.65rem;
+  border-radius: 3px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  z-index: 2;
+}
+.shop-product-info {
+  padding: 1.25rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.shop-product-name {
+  font-family: 'Fraunces', serif;
+  font-size: 1.125rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.shop-product-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 0.8125rem;
+  color: var(--ink-mid);
+}
+.shop-product-price {
+  font-family: 'Fraunces', serif;
+  font-size: 1rem;
+  color: var(--green-deep);
+  font-weight: 600;
+}
+
+/* How ordering works */
+.shop-how {
+  background: var(--ink);
+  color: var(--cream);
+  padding: 7rem 0;
+  position: relative;
+  overflow: hidden;
+}
+.shop-how::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 100px 100px;
+  mask-image: radial-gradient(ellipse at 50% 50%, black 10%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 50%, black 10%, transparent 70%);
+}
+.shop-how-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+.shop-how-head {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 4rem;
+}
+.shop-how-head h2 {
+  font-size: var(--fs-h1);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin: 1rem 0 1rem;
+}
+.shop-how-head h2 .italic { color: var(--green); font-weight: 400; }
+.shop-how-head p { color: var(--cream-dim); font-size: 1.0625rem; line-height: 1.6; }
+.shop-how-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+@media (max-width: 900px) {
+  .shop-how-grid { grid-template-columns: 1fr; }
+}
+.shop-how-card { text-align: center; padding: 0 1rem; }
+.shop-how-num {
+  font-family: 'Fraunces', serif;
+  font-size: 5rem;
+  font-weight: 400;
+  color: var(--green);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-style: italic;
+  margin-bottom: 1rem;
+  opacity: 0.9;
+}
+.shop-how-card h3 {
+  font-size: 1.375rem;
+  font-weight: 500;
+  margin-bottom: 0.6rem;
+  letter-spacing: -0.02em;
+}
+.shop-how-card p {
+  color: var(--cream-dim);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+}
+
+/* ============================================
+   SHOP GARMENT MOCKUPS
+   ============================================ */
+
+/* ============ HOODIE ============ */
+.garment-hoodie {
+  position: relative;
+  width: 62%;
+  max-width: 190px;
+  z-index: 1;
+}
+.garment-hoodie .garment-body {
+  position: relative;
+  background: #111;
+  border: 1px solid rgba(245, 241, 232, 0.15);
+  border-radius: 4px 4px 6px 6px;
+  padding: 3.5rem 1.5rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.garment-hoodie .garment-hood {
+  position: absolute;
+  top: -18px; left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+  height: 36px;
+  background: #111;
+  border: 1px solid rgba(245, 241, 232, 0.15);
+  border-bottom: none;
+  border-radius: 50% 50% 0 0;
+  z-index: 0;
+}
+.garment-hoodie .garment-hood::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 30%;
+  height: 8px;
+  border-radius: 0 0 50% 50%;
+  background: #0a0a0a;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.4);
+}
+.garment-hoodie .garment-sleeve-l,
+.garment-hoodie .garment-sleeve-r {
+  position: absolute;
+  top: 22px;
+  width: 26px;
+  height: 65%;
+  background: #111;
+  border: 1px solid rgba(245, 241, 232, 0.15);
+  z-index: -1;
+}
+.garment-hoodie .garment-sleeve-l {
+  left: -19px;
+  border-radius: 6px 0 0 4px;
+  transform: rotate(8deg);
+  transform-origin: top right;
+  border-right: none;
+}
+.garment-hoodie .garment-sleeve-r {
+  right: -19px;
+  border-radius: 0 6px 4px 0;
+  transform: rotate(-8deg);
+  transform-origin: top left;
+  border-left: none;
+}
+.garment-hoodie .garment-strings {
+  position: absolute;
+  top: 18px; left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 2;
+}
+.garment-hoodie .garment-strings::before,
+.garment-hoodie .garment-strings::after {
+  content: '';
+  width: 1.5px;
+  height: 22px;
+  background: rgba(245, 241, 232, 0.3);
+  border-radius: 1px;
+}
+.garment-hoodie .garment-pocket {
+  position: absolute;
+  bottom: 18%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 55%;
+  height: 18%;
+  border: 1px solid rgba(245, 241, 232, 0.12);
+  border-radius: 0 0 8px 8px;
+  border-top: none;
+}
+/* Cream hoodie */
+.shop-product-visual.cream .garment-hoodie .garment-body {
+  background: #E8E2D0;
+  border-color: rgba(10, 36, 38, 0.12);
+}
+.shop-product-visual.cream .garment-hoodie .garment-hood {
+  background: #E8E2D0;
+  border-color: rgba(10, 36, 38, 0.12);
+}
+.shop-product-visual.cream .garment-hoodie .garment-sleeve-l,
+.shop-product-visual.cream .garment-hoodie .garment-sleeve-r {
+  background: #E8E2D0;
+  border-color: rgba(10, 36, 38, 0.12);
+}
+.shop-product-visual.cream .garment-hoodie .garment-hood::after {
+  background: #D8D1BC;
+}
+.shop-product-visual.cream .garment-hoodie .garment-strings::before,
+.shop-product-visual.cream .garment-hoodie .garment-strings::after {
+  background: rgba(10, 36, 38, 0.2);
+}
+.shop-product-visual.cream .garment-hoodie .garment-pocket {
+  border-color: rgba(10, 36, 38, 0.1);
+}
+
+/* ============ TEE ============ */
+.garment-tee {
+  position: relative;
+  width: 55%;
+  max-width: 160px;
+  z-index: 1;
+}
+.garment-tee .garment-body {
+  position: relative;
+  background: #111;
+  border: 1px solid rgba(245, 241, 232, 0.15);
+  border-radius: 2px 2px 4px 4px;
+  padding: 2.75rem 1.25rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.garment-tee .garment-collar {
+  position: absolute;
+  top: -6px; left: 50%;
+  transform: translateX(-50%);
+  width: 35%;
+  height: 14px;
+  border-radius: 0 0 50% 50%;
+  background: #0a0a0a;
+  border: 1px solid rgba(245, 241, 232, 0.15);
+  border-top: none;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+  z-index: 2;
+}
+.garment-tee .garment-sleeve-l,
+.garment-tee .garment-sleeve-r {
+  position: absolute;
+  top: 0;
+  width: 26px;
+  height: 35%;
+  background: #111;
+  border: 1px solid rgba(245, 241, 232, 0.15);
+  z-index: -1;
+}
+.garment-tee .garment-sleeve-l {
+  left: -20px;
+  border-radius: 4px 0 0 16px;
+  transform: rotate(12deg);
+  transform-origin: top right;
+  border-right: none;
+}
+.garment-tee .garment-sleeve-r {
+  right: -20px;
+  border-radius: 0 4px 16px 0;
+  transform: rotate(-12deg);
+  transform-origin: top left;
+  border-left: none;
+}
+/* Cream tee */
+.shop-product-visual.cream .garment-tee .garment-body {
+  background: #E8E2D0;
+  border-color: rgba(10, 36, 38, 0.12);
+}
+.shop-product-visual.cream .garment-tee .garment-sleeve-l,
+.shop-product-visual.cream .garment-tee .garment-sleeve-r {
+  background: #E8E2D0;
+  border-color: rgba(10, 36, 38, 0.12);
+}
+.shop-product-visual.cream .garment-tee .garment-collar {
+  background: #D8D1BC;
+  border-color: rgba(10, 36, 38, 0.12);
+}
+
+/* ============ CAP ============ */
+.garment-cap {
+  position: relative;
+  width: 55%;
+  max-width: 160px;
+  z-index: 1;
+}
+.garment-cap .garment-body {
+  position: relative;
+  background: #111;
+  border: 1px solid rgba(245, 241, 232, 0.15);
+  border-bottom: none;
+  border-radius: 60% 60% 4px 4px;
+  padding: 3rem 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.garment-cap .garment-brim {
+  width: 120%;
+  height: 16px;
+  background: #111;
+  border: 1px solid rgba(245, 241, 232, 0.15);
+  border-top: none;
+  border-radius: 0 0 50% 50%;
+  margin-top: 0;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+.garment-cap .garment-button {
+  position: absolute;
+  top: 4px; left: 50%;
+  transform: translateX(-50%);
+  width: 8px; height: 8px;
+  background: #222;
+  border: 1px solid rgba(245, 241, 232, 0.2);
+  border-radius: 50%;
+  z-index: 2;
+}
+.garment-cap .garment-seam {
+  position: absolute;
+  top: 8px; left: 50%;
+  width: 1px;
+  height: 50%;
+  background: rgba(245, 241, 232, 0.12);
+}
+
+/* ============ PRINT TEXT ============ */
+.garment-print {
+  text-align: center;
+  line-height: 0.95;
+  z-index: 2;
+  position: relative;
+}
+.garment-print .gp-line-1 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(0.95rem, 2.5vw, 1.35rem);
+  font-weight: 700;
+  display: block;
+  letter-spacing: -0.02em;
+  color: var(--cream);
+}
+.garment-print .gp-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  margin: 0.35rem 0;
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: clamp(0.55rem, 1.2vw, 0.75rem);
+  font-weight: 400;
+  color: var(--cream);
+}
+.garment-print .gp-div::before,
+.garment-print .gp-div::after {
+  content: '';
+  height: 1px;
+  background: currentColor;
+  flex: 1;
+  max-width: 30px;
+  opacity: 0.6;
+}
+.garment-print .gp-line-2 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(0.7rem, 1.6vw, 0.95rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  display: block;
+  color: var(--cream);
+}
+/* Cream print text */
+.shop-product-visual.cream .garment-print .gp-line-1,
+.shop-product-visual.cream .garment-print .gp-div,
+.shop-product-visual.cream .garment-print .gp-line-2 {
+  color: var(--ink);
+}

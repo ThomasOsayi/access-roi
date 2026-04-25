@@ -57,7 +57,7 @@ export default function EbookPage() {
                 Before You <span className="italic">Owe.</span>
               </h1>
               <p>
-                A field guide to running the numbers on your education — built
+                A field guide to running the numbers on your education, built
                 from real student cases, BLS salary data, and aid-letter
                 translations. No fluff. No brochures. Just the math you
                 should&apos;ve seen before you signed anything.
@@ -129,7 +129,7 @@ export default function EbookPage() {
                   className="btn-primary"
                   style={{ width: "100%", justifyContent: "center" }}
                 >
-                  Pre-Order on Gumroad — $29
+                  Pre-Order on Gumroad, $29
                   <svg
                     className="arrow"
                     width="14"
@@ -172,7 +172,7 @@ export default function EbookPage() {
               <div className="why-num">01</div>
               <h3>Sticker price is fiction.</h3>
               <p>
-                The number on the brochure isn&apos;t what you&apos;ll pay — but
+                The number on the brochure isn&apos;t what you&apos;ll pay, but
                 most students never learn how to read the real aid letter until
                 it&apos;s too late to negotiate.
               </p>
@@ -182,7 +182,7 @@ export default function EbookPage() {
               <h3>Your major matters more than your school.</h3>
               <p>
                 Two students at the same university graduate with a 4x salary
-                gap. The difference isn&apos;t prestige — it&apos;s the major.
+                gap. The difference isn&apos;t prestige, it&apos;s the major.
                 We show you the math.
               </p>
             </div>
@@ -191,7 +191,7 @@ export default function EbookPage() {
               <h3>Break-even is a real number.</h3>
               <p>
                 Every path has a year where the degree pays for itself. If that
-                year is 12, 18, or never — you deserve to know before you sign.
+                year is 12, 18, or never, you deserve to know before you sign.
               </p>
             </div>
           </div>
@@ -221,38 +221,38 @@ export default function EbookPage() {
               {
                 num: "CH 01",
                 title: "The Sticker Price Lie",
-                desc: "How to read a real aid letter — and negotiate it up.",
-                pages: "p. 12 — 36",
+                desc: "How to read a real aid letter, and negotiate it up.",
+                pages: "p. 12 to 36",
               },
               {
                 num: "CH 02",
                 title: "Majors by the Numbers",
-                desc: "Starting salary vs. ceiling — every major benchmarked against BLS data.",
-                pages: "p. 38 — 72",
+                desc: "Starting salary vs. ceiling, every major benchmarked against BLS data.",
+                pages: "p. 38 to 72",
               },
               {
                 num: "CH 03",
                 title: "The Break-Even Framework",
                 desc: "The formula that tells you exactly when your degree pays for itself.",
-                pages: "p. 74 — 106",
+                pages: "p. 74 to 106",
               },
               {
                 num: "CH 04",
                 title: "State School, Trade School, or Skip",
                 desc: "Every alternative path ranked by 10-year earnings potential.",
-                pages: "p. 108 — 144",
+                pages: "p. 108 to 144",
               },
               {
                 num: "CH 05",
-                title: "Negotiating Aid — Yes, You Can",
+                title: "Negotiating Aid, Yes, You Can",
                 desc: "Scripts, templates, and timing for the conversation no one teaches.",
-                pages: "p. 146 — 186",
+                pages: "p. 146 to 186",
               },
               {
                 num: "CH 06",
                 title: "The 10-Year Letter",
                 desc: "Why to write a letter to your future self before you sign anything.",
-                pages: "p. 188 — 214",
+                pages: "p. 188 to 214",
               },
             ].map((ch) => (
               <li key={ch.num} className="chapter-row">
@@ -283,11 +283,11 @@ export default function EbookPage() {
             {[
               {
                 q: "When will I get the e-book?",
-                a: "The e-book ships in Q2 2026. You'll get an email with your Gumroad download link the moment it's live — no need to check back, no spam.",
+                a: "The e-book ships in Q2 2026. You'll get an email with your Gumroad download link the moment it's live, no need to check back, no spam.",
               },
               {
                 q: "Why pre-order if it's not ready?",
-                a: "Pre-orders lock in the launch price ($29 vs. the regular $49) and make sure you're first in line when it drops. Plus, it helps us know how many copies to prep — a real vote of confidence.",
+                a: "Pre-orders lock in the launch price ($29 vs. the regular $49) and make sure you're first in line when it drops. Plus, it helps us know how many copies to prep, a real vote of confidence.",
               },
               {
                 q: "What if I change my mind?",
@@ -303,7 +303,7 @@ export default function EbookPage() {
               },
               {
                 q: "What format is the book?",
-                a: "PDF on launch — designed for reading on both phone and desktop. Printable worksheets included. EPUB version coming shortly after.",
+                a: "PDF on launch, designed for reading on both phone and desktop. Printable worksheets included. EPUB version coming shortly after.",
               },
             ].map((item) => (
               <details key={item.q} className="faq-item">
@@ -342,7 +342,7 @@ export default function EbookPage() {
                 rel="noopener noreferrer"
                 className="btn-primary"
               >
-                Pre-Order — $29
+                Pre-Order, $29
                 <svg
                   className="arrow"
                   width="14"

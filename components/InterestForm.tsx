@@ -21,7 +21,7 @@ export default function InterestForm() {
         </div>
         <h3>Tell us about you.</h3>
         <p>
-          This helps us send you the right stuff — no spam, unsubscribe any
+          This helps us send you the right stuff, no spam, unsubscribe any
           time.
         </p>
       </div>
@@ -150,7 +150,7 @@ export default function InterestForm() {
           </div>
           <h3>You&apos;re on the list.</h3>
           <p>
-            Check your inbox — we just sent you Chapter 1 as a thank-you. See
+            Check your inbox, we just sent you Chapter 1 as a thank-you. See
             you at launch.
           </p>
         </div>

@@ -18,6 +18,7 @@ const PRODUCTS = [
     price: "$65",
     badge: "Best Seller",
     cream: false,
+    garment: "hoodie",
   },
   {
     name: "Options Tee",
@@ -28,6 +29,7 @@ const PRODUCTS = [
     price: "$35",
     badge: "New",
     cream: true,
+    garment: "tee",
   },
   {
     name: "Data Tee",
@@ -38,6 +40,7 @@ const PRODUCTS = [
     price: "$35",
     badge: null,
     cream: false,
+    garment: "tee",
   },
   {
     name: "Math Tee",
@@ -48,6 +51,7 @@ const PRODUCTS = [
     price: "$35",
     badge: null,
     cream: false,
+    garment: "tee",
   },
   {
     name: "Assets Tee",
@@ -58,18 +62,75 @@ const PRODUCTS = [
     price: "$35",
     badge: null,
     cream: true,
+    garment: "tee",
   },
   {
     name: "Logo Cap",
     line1: "ACCESS",
-    connector: "—",
+    connector: ",",
     line2: "ROI",
     meta: "Dad Cap · Black",
     price: "$30",
     badge: "Ltd.",
     cream: false,
+    garment: "cap",
   },
 ];
+
+function GarmentMockup({
+  garment,
+  line1,
+  connector,
+  line2,
+}: {
+  garment: string;
+  line1: string;
+  connector: string;
+  line2: string;
+}) {
+  const print = (
+    <div className="garment-print">
+      <span className="gp-line-1">{line1}</span>
+      <span className="gp-div">{connector}</span>
+      <span className="gp-line-2">{line2}</span>
+    </div>
+  );
+
+  if (garment === "hoodie") {
+    return (
+      <div className="garment-hoodie">
+        <div className="garment-hood" />
+        <div className="garment-sleeve-l" />
+        <div className="garment-sleeve-r" />
+        <div className="garment-body">
+          <div className="garment-strings" />
+          {print}
+          <div className="garment-pocket" />
+        </div>
+      </div>
+    );
+  }
+
+  if (garment === "cap") {
+    return (
+      <div className="garment-cap">
+        <div className="garment-button" />
+        <div className="garment-seam" />
+        <div className="garment-body">{print}</div>
+        <div className="garment-brim" />
+      </div>
+    );
+  }
+
+  return (
+    <div className="garment-tee">
+      <div className="garment-collar" />
+      <div className="garment-sleeve-l" />
+      <div className="garment-sleeve-r" />
+      <div className="garment-body">{print}</div>
+    </div>
+  );
+}
 
 export default function ShopPage() {
   return (
@@ -95,7 +156,7 @@ export default function ShopPage() {
                 </h1>
                 <p>
                   Hoodies, tees, and essentials built around the mantras. No
-                  warehouse, no dead stock — every piece is printed and shipped
+                  warehouse, no dead stock, every piece is printed and shipped
                   when you order, straight from Printful.
                 </p>
                 <a
@@ -168,7 +229,7 @@ export default function ShopPage() {
             </div>
             <p>
               A preview of what&apos;s in the shop. Every piece is
-              print-on-demand via Printful — click through to view sizes,
+              print-on-demand via Printful, click through to view sizes,
               colorways, and check out.
             </p>
           </div>
@@ -188,11 +249,12 @@ export default function ShopPage() {
                   {product.badge && (
                     <div className="shop-product-badge">{product.badge}</div>
                   )}
-                  <div className="shop-product-art">
-                    <span className="spa-line-1">{product.line1}</span>
-                    <span className="spa-div">{product.connector}</span>
-                    <span className="spa-line-2">{product.line2}</span>
-                  </div>
+                  <GarmentMockup
+                    garment={product.garment}
+                    line1={product.line1}
+                    connector={product.connector}
+                    line2={product.line2}
+                  />
                 </div>
                 <div className="shop-product-info">
                   <div className="shop-product-name">{product.name}</div>
@@ -246,6 +308,54 @@ export default function ShopPage() {
                   door, with tracking included.
                 </p>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============ FINAL CTA ============ */}
+      <section className="final-cta">
+        <div className="container">
+          <div className="final-cta-inner">
+            <div
+              className="eyebrow"
+              style={{ color: "var(--green)", marginBottom: "1.5rem" }}
+            >
+              Open the Drop
+            </div>
+            <h2>
+              The full shop
+              <br />
+              lives on <span className="italic">Printful.</span>
+            </h2>
+            <p>
+              Browse every piece, every size, every colorway. Secure checkout
+              with free shipping over $75.
+            </p>
+            <a
+              href="https://printful.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary"
+            >
+              View Full Shop
+              <svg
+                className="arrow"
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                fill="none"
+              >
+                <path
+                  d="M1 7H13M13 7L7 1M13 7L7 13"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </a>
+            <div className="final-cta-note" style={{ marginTop: "1.25rem" }}>
+              Live · Powered by Printful · Ships worldwide
             </div>
           </div>
         </div>

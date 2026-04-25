@@ -9,29 +9,29 @@ export const metadata: Metadata = {
 
 const AGENDA = [
   {
-    time: "00:00 — 05:00",
+    time: "00:00 to 05:00",
     title: "Context & goals",
     desc: "Quick intro, confirm your target schools, majors, and career interests from your intake form. Align on what \"success\" looks like for this call.",
   },
   {
-    time: "05:00 — 20:00",
+    time: "05:00 to 20:00",
     title: "Your numbers, live",
-    desc: "We walk through your real aid letters together. Sticker price, net price, grant vs. loan split, and what you're actually signing up for — line by line.",
+    desc: "We walk through your real aid letters together. Sticker price, net price, grant vs. loan split, and what you're actually signing up for, line by line.",
   },
   {
-    time: "20:00 — 35:00",
+    time: "20:00 to 35:00",
     title: "ROI comparison",
-    desc: "Side-by-side comparison of your school × major combinations against starting salary, break-even, and 10-year earnings — using BLS data and live cost models.",
+    desc: "Side-by-side comparison of your school × major combinations against starting salary, break-even, and 10-year earnings, using BLS data and live cost models.",
   },
   {
-    time: "35:00 — 45:00",
+    time: "35:00 to 45:00",
     title: "The game plan",
     desc: "Your next 3 moves. Negotiation scripts for aid offices, backup schools worth adding, and any red flags we found. You leave with a clear plan.",
   },
   {
     time: "+ 48hrs",
     title: "The scorecard lands",
-    desc: "We send your custom ROI scorecard — a one-page decision matrix ranking every path, with notes. Show it to your parents. Use it to decide.",
+    desc: "We send your custom ROI scorecard, a one-page decision matrix ranking every path, with notes. Show it to your parents. Use it to decide.",
   },
 ];
 
@@ -44,10 +44,10 @@ const YES_LIST = [
 ];
 
 const NO_LIST = [
-  "Just want general \"should I go to college?\" advice — grab the e-book first",
+  "Just want general \"should I go to college?\" advice, grab the e-book first",
   "Haven't applied anywhere yet and are still 2+ years from college",
   "Looking for help writing application essays or personal statements",
-  "Want someone to tell you where to go — we don't do that, we do math",
+  "Want someone to tell you where to go, we don't do that, we do math",
 ];
 
 export default function SessionPage() {
@@ -73,7 +73,7 @@ export default function SessionPage() {
               </h1>
               <p>
                 Skip the DMs. Book a 45-minute strategy call to walk through
-                your actual aid letters, major options, and career paths — and
+                your actual aid letters, major options, and career paths, and
                 leave with a ranked decision matrix you can show your parents.
               </p>
               <a href="#book-now" className="btn-primary">
@@ -399,7 +399,7 @@ export default function SessionPage() {
             </p>
             <div className="final-cta-buttons">
               <a href="#book-now" className="btn-primary">
-                Book Your Session — $149
+                Book Your Session, $149
                 <svg
                   className="arrow"
                   width="14"

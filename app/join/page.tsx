@@ -27,7 +27,8 @@ export default function JoinPage() {
             </h1>
             <p>
               Not ready to pre-order? Cool. Drop your info and we&apos;ll keep
-              you in the loop — new chapters, merch drops, free worksheets, and
+              you in the loop, with new chapters, merch drops, free worksheets,
+              and
               first access when the e-book goes live.
             </p>
 
@@ -51,7 +52,7 @@ export default function JoinPage() {
                 <div className="perk-body">
                   <h4>First access at launch</h4>
                   <p>
-                    Know the second the e-book goes live — before anyone else.
+                    Know the second the e-book goes live, before anyone else.
                   </p>
                 </div>
               </div>
@@ -75,8 +76,8 @@ export default function JoinPage() {
                 <div className="perk-body">
                   <h4>Free sample chapter</h4>
                   <p>
-                    We&apos;ll send Chapter 1 — &quot;The Sticker Price
-                    Lie&quot; — straight to your inbox.
+                    We&apos;ll send Chapter 1, &quot;The Sticker Price Lie,&quot;
+                    straight to your inbox.
                   </p>
                 </div>
               </div>
@@ -109,8 +110,8 @@ export default function JoinPage() {
                 <div className="perk-body">
                   <h4>Early drop access</h4>
                   <p>
-                    Merch drops and limited runs — you get the heads up 24 hours
-                    early.
+                    Merch drops and limited runs, and you get the heads up 24
+                    hours early.
                   </p>
                 </div>
               </div>

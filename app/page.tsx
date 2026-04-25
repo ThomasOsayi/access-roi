@@ -20,7 +20,7 @@ export default function HomePage() {
               <p className="hero-sub">
                 Before you sign a $200K promissory note, run the numbers. Access
                 ROI is the field guide to picking an education path that actually
-                pays — built for the kitchen table, not the admissions brochure.
+                pays, built for the kitchen table, not the admissions brochure.
               </p>
               <div className="hero-cta-row">
                 <Link href="/ebook" className="btn-primary">
@@ -164,7 +164,7 @@ export default function HomePage() {
             </h2>
             <p>
               Whether you&apos;re pre-ordering the book, repping the philosophy,
-              or booking a 1:1 — start where it fits.
+              or booking a 1:1, start where it fits.
             </p>
           </div>
           <div className="paths-grid">
@@ -197,8 +197,8 @@ export default function HomePage() {
               <h3>Pre-Order the E-Book</h3>
               <p>
                 214 pages. Six chapters. Every worksheet you need to run your own
-                ROI before you sign a loan. $29 for launch, hosted on Gumroad —
-                instant delivery when it ships.
+                ROI before you sign a loan. $29 for launch, hosted on Gumroad,
+                with instant delivery when it ships.
               </p>
               <span className="path-link">
                 Pre-order now{" "}
@@ -245,7 +245,7 @@ export default function HomePage() {
               <h3>Shop the Merch</h3>
               <p>
                 Assets over Liabilities. Options over Obligations. Wear the
-                philosophy. Printed on-demand — every piece ships direct, no
+                philosophy. Printed on-demand, and every piece ships direct, no
                 inventory games.
               </p>
               <span className="path-link">
@@ -299,7 +299,7 @@ export default function HomePage() {
               <h3>Book a 1:1 Session</h3>
               <p>
                 Skip the DMs. Book a 45-minute strategy call to walk through
-                your actual numbers — schools, majors, aid offers — and leave
+                your actual numbers, schools, majors, aid offers, and leave
                 with a ranked decision matrix.
               </p>
               <span className="path-link">
@@ -343,7 +343,7 @@ export default function HomePage() {
               An obligation is a path you took because someone told you to. An
               option is one you took because the numbers worked.{" "}
               <span className="em">
-                We&apos;re not anti-college — we&apos;re anti-guessing.
+                We&apos;re not anti-college, we&apos;re anti-guessing.
               </span>{" "}
               The goal isn&apos;t to talk you out of your dream school;
               it&apos;s to make sure it&apos;s actually a dream and not a
@@ -387,11 +387,12 @@ export default function HomePage() {
             </h2>
             <p>
               Be first in line when the e-book drops. Pre-order now and lock in
-              the launch price — we&apos;ll email you the moment it&apos;s live.
+              the launch price, and we&apos;ll email you the moment it&apos;s
+              live.
             </p>
             <div className="final-cta-buttons">
               <Link href="/ebook" className="btn-primary">
-                Pre-Order — $29
+                Pre-Order, $29
                 <svg
                   className="arrow"
                   width="14"
