@@ -2668,3 +2668,103 @@
 .shop-product-visual.cream .garment-print .gp-line-2 {
   color: var(--ink);
 }
+
+/* ============================================
+   SUCCESS PAGE
+   ============================================ */
+
+.success-page {
+  background: var(--ink);
+  color: var(--cream);
+  padding: 10rem 0 6rem;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+.success-page::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse at 50% 40%, black 0%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 40%, black 0%, transparent 75%);
+  pointer-events: none;
+}
+.success-inner {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+.success-page .success-icon {
+  width: 80px; height: 80px;
+  background: var(--green);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 2rem;
+  color: var(--ink-deep);
+  box-shadow: 0 0 40px var(--green-glow);
+}
+.success-page h1 {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.25rem;
+}
+.success-page h1 .italic { color: var(--green); font-weight: 400; }
+.success-sub {
+  font-size: 1.0625rem;
+  color: var(--cream-dim);
+  line-height: 1.6;
+  margin-bottom: 3rem;
+}
+.success-details {
+  background: var(--ink-mid);
+  border: 1px solid var(--ink-edge);
+  border-radius: 8px;
+  padding: 1.75rem 2rem;
+  margin-bottom: 3rem;
+  text-align: left;
+}
+.success-detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  font-size: 0.9375rem;
+  color: var(--cream-dim);
+  border-bottom: 1px solid var(--ink-edge);
+}
+.success-detail:last-child { border-bottom: none; }
+.success-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--cream-mid);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+.success-actions {
+  display: flex;
+  gap: 1.25rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 480px) {
+  .success-page { padding: 7rem 0 4rem; }
+  .success-page h1 { font-size: 2.25rem; }
+  .success-details { padding: 1.25rem 1.5rem; }
+  .success-detail { flex-direction: column; align-items: flex-start; gap: 0.25rem; }
+  .success-actions { flex-direction: column; align-items: stretch; }
+  .success-actions .btn-primary,
+  .success-actions .btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+}

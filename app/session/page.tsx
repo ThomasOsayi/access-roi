@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "Book a 1:1 Session — Access ROI",
@@ -312,68 +313,15 @@ export default function SessionPage() {
             </p>
           </div>
           <div className="calendly-embed">
-            {/*
-              Replace this placeholder with the real Calendly embed:
-              
-              <div
-                className="calendly-inline-widget"
-                data-url="https://calendly.com/accessroi/strategy"
-                style={{ minWidth: "320px", height: "600px" }}
-              />
-              <script
-                type="text/javascript"
-                src="https://assets.calendly.com/assets/external/widget.js"
-                async
-              />
-            */}
-            <div className="calendly-placeholder">
-              <div className="calendly-logo-c">
-                <svg
-                  width="28"
-                  height="28"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                >
-                  <path
-                    d="M8 2V6M16 2V6M3 10H21M5 4H19C20.1046 4 21 4.89543 21 6V20C21 21.1046 20.1046 22 19 22H5C3.89543 22 3 21.1046 3 20V6C3 4.89543 3.89543 4 5 4Z"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              </div>
-              <h3>Calendly booking widget goes here</h3>
-              <p>
-                Once the Calendly account is connected, this block embeds the
-                live calendar with available slots, timezone detection, and the
-                intake form.
-              </p>
-              <a
-                href="https://calendly.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-ink"
-              >
-                Preview on Calendly
-                <svg
-                  className="arrow"
-                  width="14"
-                  height="14"
-                  viewBox="0 0 14 14"
-                  fill="none"
-                >
-                  <path
-                    d="M1 7H13M13 7L7 1M13 7L7 13"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              </a>
-              <div className="calendly-note-text">
-                Embed script: assets.calendly.com/widget.js
-              </div>
-            </div>
+            <div
+              className="calendly-inline-widget"
+              data-url="https://calendly.com/mylek-accessroi/30min?primary_color=08ac44"
+              style={{ minWidth: "320px", height: "700px", width: "100%" }}
+            />
+            <Script
+              src="https://assets.calendly.com/assets/external/widget.js"
+              strategy="lazyOnload"
+            />
           </div>
         </div>
       </section>

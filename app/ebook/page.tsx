@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import CheckoutButton from "@/components/CheckoutButton";
 
 export const metadata: Metadata = {
   title: "Know Before You Owe — The Access ROI E-Book",
@@ -122,31 +123,12 @@ export default function EbookPage() {
                     30-day money-back guarantee
                   </div>
                 </div>
-                <a
-                  href="https://gumroad.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-primary"
+                <CheckoutButton
+                  label="Pre-Order Now, $29"
                   style={{ width: "100%", justifyContent: "center" }}
-                >
-                  Pre-Order on Gumroad, $29
-                  <svg
-                    className="arrow"
-                    width="14"
-                    height="14"
-                    viewBox="0 0 14 14"
-                    fill="none"
-                  >
-                    <path
-                      d="M1 7H13M13 7L7 1M13 7L7 13"
-                      stroke="currentColor"
-                      strokeWidth="1.8"
-                      strokeLinecap="round"
-                    />
-                  </svg>
-                </a>
+                />
                 <div className="gumroad-note">
-                  Secure checkout · Hosted by Gumroad
+                  Secure checkout · Powered by Stripe
                 </div>
               </div>
             </div>
@@ -283,7 +265,7 @@ export default function EbookPage() {
             {[
               {
                 q: "When will I get the e-book?",
-                a: "The e-book ships in Q2 2026. You'll get an email with your Gumroad download link the moment it's live, no need to check back, no spam.",
+                a: "The e-book ships in Q2 2026. You'll get an email with your download link the moment it's live, no need to check back, no spam.",
               },
               {
                 q: "Why pre-order if it's not ready?",
@@ -291,7 +273,7 @@ export default function EbookPage() {
               },
               {
                 q: "What if I change my mind?",
-                a: "Full refund, any time before launch, no questions asked. After launch, you still get a 30-day money-back guarantee through Gumroad.",
+                a: "Full refund, any time before launch, no questions asked. After launch, you still get a 30-day money-back guarantee.",
               },
               {
                 q: "Is this only for students in the U.S.?",
@@ -336,34 +318,14 @@ export default function EbookPage() {
               live.
             </p>
             <div className="final-cta-buttons">
-              <a
-                href="https://gumroad.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary"
-              >
-                Pre-Order, $29
-                <svg
-                  className="arrow"
-                  width="14"
-                  height="14"
-                  viewBox="0 0 14 14"
-                  fill="none"
-                >
-                  <path
-                    d="M1 7H13M13 7L7 1M13 7L7 13"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              </a>
+              <CheckoutButton label="Pre-Order, $29" />
               <Link href="/join" className="btn-secondary">
                 Not ready? Join the list
               </Link>
             </div>
             <div className="final-cta-note">
-              Instant PDF on launch · 30-day money back · Hosted by Gumroad
+              Instant PDF on launch · 30-day money back · Secure checkout via
+              Stripe
             </div>
           </div>
         </div>
