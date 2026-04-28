@@ -4,11 +4,43 @@ import { useState } from "react";
 
 export default function InterestForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    // TODO: wire to ConvertKit, Mailchimp, or Firebase
-    setSubmitted(true);
+    setLoading(true);
+    setError(null);
+
+    const formData = new FormData(e.currentTarget);
+
+    const interests: string[] = [];
+    formData.getAll("interests").forEach((v) => interests.push(v as string));
+
+    const body = {
+      firstName: formData.get("firstName") as string,
+      lastName: formData.get("lastName") as string,
+      email: formData.get("email") as string,
+      role: formData.get("role") as string,
+      stage: formData.get("stage") as string,
+      interests,
+      source: "full-form",
+    };
+
+    try {
+      const res = await fetch("/api/signups", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+
+      if (!res.ok) throw new Error("Failed to submit");
+
+      setSubmitted(true);
+    } catch {
+      setError("Something went wrong. Please try again.");
+      setLoading(false);
+    }
   }
 
   return (
@@ -103,28 +135,48 @@ export default function InterestForm() {
                 1:1 sessions
               </label>
               <label className="check">
-                <input type="checkbox" name="interests" value="worksheets" />
+                <input type="checkbox" name="interests" value="webinars" />
                 Free webinars
               </label>
             </div>
           </div>
 
-          <button type="submit" className="btn-primary form-submit">
-            Join the List
-            <svg
-              className="arrow"
-              width="14"
-              height="14"
-              viewBox="0 0 14 14"
-              fill="none"
-            >
-              <path
-                d="M1 7H13M13 7L7 1M13 7L7 13"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-              />
-            </svg>
+          {error && (
+            <div style={{
+              background: "rgba(200, 88, 53, 0.1)",
+              border: "1px solid rgba(200, 88, 53, 0.3)",
+              borderRadius: "4px",
+              padding: "0.75rem 1rem",
+              color: "#E8735A",
+              fontSize: "0.8125rem",
+            }}>
+              {error}
+            </div>
+          )}
+
+          <button
+            type="submit"
+            className="btn-primary form-submit"
+            disabled={loading}
+            style={{ opacity: loading ? 0.7 : 1 }}
+          >
+            {loading ? "Submitting..." : "Join the List"}
+            {!loading && (
+              <svg
+                className="arrow"
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                fill="none"
+              >
+                <path
+                  d="M1 7H13M13 7L7 1M13 7L7 13"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                />
+              </svg>
+            )}
           </button>
           <div className="form-disclaimer">
             Your info stays with us · No spam · Unsubscribe any time

@@ -101,7 +101,21 @@ export default function Footer() {
 
         <div className="footer-bottom">
           <div>© 2026 Access ROI</div>
-          <div>Privacy · Terms · Cookies</div>
+          <div className="footer-bottom-right">
+            <span>Privacy · Terms · Cookies</span>
+            <Link href="/admin" className="footer-admin-link">
+              <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+                <path
+                  d="M11 7V5.5C11 3.567 9.433 2 7.5 2C5.567 2 4 3.567 4 5.5V7"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="square"
+                />
+                <rect x="3" y="7" width="10" height="8" rx="1" fill="currentColor" />
+              </svg>
+              Admin
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
