@@ -166,6 +166,130 @@ function CalendlyConnect({ onConnected }: { onConnected: () => void }) {
   );
 }
 
+function PasswordChange() {
+  const [open, setOpen] = useState(false);
+  const [current, setCurrent] = useState("");
+  const [newPw, setNewPw] = useState("");
+  const [confirm, setConfirm] = useState("");
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState(false);
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setError(null);
+
+    if (newPw !== confirm) {
+      setError("New passwords don't match.");
+      return;
+    }
+    if (newPw.length < 6) {
+      setError("Password must be at least 6 characters.");
+      return;
+    }
+
+    setSaving(true);
+    try {
+      const res = await fetch("/api/admin/auth", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          currentPassword: current,
+          newPassword: newPw,
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        setError(data.error || "Failed to change password");
+        setSaving(false);
+        return;
+      }
+
+      setSuccess(true);
+      setCurrent("");
+      setNewPw("");
+      setConfirm("");
+      setTimeout(() => {
+        setSuccess(false);
+        setOpen(false);
+      }, 2000);
+    } catch {
+      setError("Something went wrong.");
+    }
+    setSaving(false);
+  }
+
+  if (!open) {
+    return (
+      <button
+        className="admin-pw-toggle"
+        onClick={() => setOpen(true)}
+      >
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+          <rect x="3" y="11" width="18" height="11" rx="2" stroke="currentColor" strokeWidth="1.8" />
+          <path d="M7 11V7C7 4.23858 9.23858 2 12 2C14.7614 2 17 4.23858 17 7V11" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        </svg>
+        Change Password
+      </button>
+    );
+  }
+
+  return (
+    <div className="admin-pw-form-wrap">
+      <form onSubmit={handleSubmit} className="admin-pw-form">
+        <div className="admin-pw-field">
+          <label>Current password</label>
+          <input
+            type="password"
+            value={current}
+            onChange={(e) => setCurrent(e.target.value)}
+            required
+          />
+        </div>
+        <div className="admin-pw-field">
+          <label>New password</label>
+          <input
+            type="password"
+            value={newPw}
+            onChange={(e) => setNewPw(e.target.value)}
+            required
+            minLength={6}
+          />
+        </div>
+        <div className="admin-pw-field">
+          <label>Confirm new password</label>
+          <input
+            type="password"
+            value={confirm}
+            onChange={(e) => setConfirm(e.target.value)}
+            required
+          />
+        </div>
+        {error && <div className="admin-pw-error">{error}</div>}
+        {success && <div className="admin-pw-success">Password updated!</div>}
+        <div className="admin-pw-actions">
+          <button
+            type="submit"
+            className="admin-connect-btn"
+            disabled={saving}
+            style={{ opacity: saving ? 0.7 : 1 }}
+          >
+            {saving ? "Saving..." : "Update Password"}
+          </button>
+          <button
+            type="button"
+            className="admin-btn-outline"
+            onClick={() => { setOpen(false); setError(null); }}
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+}
+
 export default function AdminPage() {
   const [authed, setAuthed] = useState(false);
   const [checking, setChecking] = useState(true);
@@ -405,6 +529,7 @@ export default function AdminPage() {
               Log out
             </button>
           </div>
+          <PasswordChange />
         </div>
       </aside>
 
