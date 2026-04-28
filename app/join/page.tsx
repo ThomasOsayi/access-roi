@@ -27,7 +27,7 @@ export default function JoinPage() {
             </h1>
             <p>
               Not ready to pre-order? Cool. Drop your info and we&apos;ll keep
-              you in the loop, with new chapters, merch drops, free worksheets,
+              you in the loop, with new chapters, merch drops, free webinars,
               and
               first access when the e-book goes live.
             </p>

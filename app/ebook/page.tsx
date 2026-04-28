@@ -25,25 +25,11 @@ export default function EbookPage() {
               <div className="book">
                 <div className="preorder-badge">Pre-Order Live</div>
                 <div className="book-pages" />
-                <div className="book-cover">
-                  <div className="book-eyebrow">The Access ROI Playbook</div>
-                  <div>
-                    <div className="book-title">
-                      Know
-                      <br />
-                      Before
-                      <br />
-                      You <span className="italic">Owe.</span>
-                    </div>
-                    <div className="book-sub">
-                      A FIELD GUIDE · 214 PAGES · 2026 ED.
-                    </div>
-                  </div>
-                  <div className="book-author">
-                    <div className="book-author-label">Written By</div>
-                    <div className="book-author-name">The Access ROI Team</div>
-                  </div>
-                </div>
+                <img
+                  src="/products/ebook-cover.jpg"
+                  alt="College Survival Guide — Access ROI E-Book"
+                  className="book-cover-img"
+                />
               </div>
             </div>
 

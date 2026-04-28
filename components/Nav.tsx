@@ -15,7 +15,6 @@ export default function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close mobile menu when route changes
   useEffect(() => {
     setMenuOpen(false);
   }, [pathname]);
@@ -47,6 +46,11 @@ export default function Nav() {
             </Link>
           </li>
           <li>
+            <Link href="/join" className={isActive("/join") ? "active" : ""}>
+              Join
+            </Link>
+          </li>
+          <li>
             <Link href="/ebook" className={isActive("/ebook") ? "active" : ""}>
               E-Book
             </Link>
@@ -62,11 +66,6 @@ export default function Nav() {
               className={isActive("/session") ? "active" : ""}
             >
               1:1 Session
-            </Link>
-          </li>
-          <li>
-            <Link href="/join" className={isActive("/join") ? "active" : ""}>
-              Join
             </Link>
           </li>
         </ul>

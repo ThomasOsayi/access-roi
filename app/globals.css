@@ -1593,6 +1593,14 @@
     inset 12px 0 25px rgba(0, 0, 0, 0.3);
   overflow: hidden;
 }
+.book-cover-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 2px 6px 6px 2px;
+}
 .book-cover::before {
   content: '';
   position: absolute;
@@ -2062,99 +2070,35 @@
   line-height: 1.6;
 }
 
-/* Hoodie mockup */
-.hoodie-mockup {
+/* Hero product image */
+.shop-hero-image {
   position: relative;
   width: 100%;
   max-width: 480px;
-  aspect-ratio: 1 / 1.15;
   margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.hoodie-card {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(145deg, #0A0A0A 0%, #1a1a1a 100%);
   border-radius: 8px;
-  padding: 3rem 2.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  box-shadow:
-    0 40px 80px rgba(0, 0, 0, 0.5),
-    inset 0 0 60px rgba(0, 0, 0, 0.5);
   overflow: hidden;
-  transition: transform 0.5s;
 }
-.hoodie-card:hover { transform: scale(1.02); }
-.hoodie-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at 30% 20%, rgba(255, 255, 255, 0.06), transparent 50%);
-  pointer-events: none;
-}
-.hoodie-text {
-  font-family: 'Fraunces', serif;
-  color: var(--cream);
-  text-align: center;
-  z-index: 2;
-  line-height: 0.95;
-}
-.ht-line-1 {
-  font-size: clamp(2rem, 6vw, 3.5rem);
-  font-weight: 700;
-  letter-spacing: -0.02em;
+.shop-hero-img {
+  width: 100%;
+  height: auto;
   display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.ht-divider {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  margin: 1rem 0;
-  font-family: 'Fraunces', serif;
-  font-style: italic;
-  font-size: clamp(1rem, 2.5vw, 1.5rem);
-  color: var(--cream);
-  font-weight: 400;
+.shop-hero-image:hover .shop-hero-img {
+  transform: scale(1.03);
 }
-.ht-divider::before,
-.ht-divider::after {
-  content: '';
-  height: 2px;
-  background: var(--cream);
-  flex: 1;
-  max-width: 80px;
-}
-.ht-line-2 {
-  font-size: clamp(1.25rem, 3.5vw, 2rem);
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  display: block;
-}
-.hoodie-tag {
-  position: absolute;
-  top: 1.5rem; right: 1.5rem;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.65rem;
-  color: var(--cream-mid);
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  z-index: 2;
-}
-.hoodie-price {
+.shop-hero-image-tag {
   position: absolute;
   bottom: 1.5rem; left: 1.5rem;
   font-family: 'Fraunces', serif;
   font-size: 1.25rem;
   color: var(--green);
   font-weight: 600;
-  z-index: 2;
+  background: rgba(10, 36, 38, 0.85);
+  backdrop-filter: blur(8px);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
 }
 
 /* Drop / product grid */
@@ -2210,26 +2154,22 @@
   box-shadow: 0 20px 50px rgba(10, 36, 38, 0.15);
 }
 .shop-product-visual {
-  aspect-ratio: 1 / 1.1;
-  background: #0A0A0A;
+  aspect-ratio: 1 / 1;
+  background: #f5f5f5;
   position: relative;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem 1.5rem;
 }
-.shop-product-visual.cream { background: var(--cream-dim); }
-.shop-product-visual.cream .shop-product-art { color: var(--ink); }
-.shop-product-visual::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at 30% 20%, rgba(255, 255, 255, 0.05), transparent 50%);
-  pointer-events: none;
+.shop-product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.shop-product-visual.cream::before {
-  background: radial-gradient(ellipse at 30% 20%, rgba(0, 0, 0, 0.03), transparent 50%);
+.shop-product:hover .shop-product-img {
+  transform: scale(1.05);
 }
 .shop-product-art {
   font-family: 'Fraunces', serif;
@@ -2476,30 +2416,6 @@
   border-radius: 0 0 8px 8px;
   border-top: none;
 }
-/* Cream hoodie */
-.shop-product-visual.cream .garment-hoodie .garment-body {
-  background: #E8E2D0;
-  border-color: rgba(10, 36, 38, 0.12);
-}
-.shop-product-visual.cream .garment-hoodie .garment-hood {
-  background: #E8E2D0;
-  border-color: rgba(10, 36, 38, 0.12);
-}
-.shop-product-visual.cream .garment-hoodie .garment-sleeve-l,
-.shop-product-visual.cream .garment-hoodie .garment-sleeve-r {
-  background: #E8E2D0;
-  border-color: rgba(10, 36, 38, 0.12);
-}
-.shop-product-visual.cream .garment-hoodie .garment-hood::after {
-  background: #D8D1BC;
-}
-.shop-product-visual.cream .garment-hoodie .garment-strings::before,
-.shop-product-visual.cream .garment-hoodie .garment-strings::after {
-  background: rgba(10, 36, 38, 0.2);
-}
-.shop-product-visual.cream .garment-hoodie .garment-pocket {
-  border-color: rgba(10, 36, 38, 0.1);
-}
 
 /* ============ TEE ============ */
 .garment-tee {
@@ -2555,20 +2471,6 @@
   transform: rotate(-12deg);
   transform-origin: top left;
   border-left: none;
-}
-/* Cream tee */
-.shop-product-visual.cream .garment-tee .garment-body {
-  background: #E8E2D0;
-  border-color: rgba(10, 36, 38, 0.12);
-}
-.shop-product-visual.cream .garment-tee .garment-sleeve-l,
-.shop-product-visual.cream .garment-tee .garment-sleeve-r {
-  background: #E8E2D0;
-  border-color: rgba(10, 36, 38, 0.12);
-}
-.shop-product-visual.cream .garment-tee .garment-collar {
-  background: #D8D1BC;
-  border-color: rgba(10, 36, 38, 0.12);
 }
 
 /* ============ CAP ============ */
@@ -2661,12 +2563,6 @@
   letter-spacing: 0.04em;
   display: block;
   color: var(--cream);
-}
-/* Cream print text */
-.shop-product-visual.cream .garment-print .gp-line-1,
-.shop-product-visual.cream .garment-print .gp-div,
-.shop-product-visual.cream .garment-print .gp-line-2 {
-  color: var(--ink);
 }
 
 /* ============================================
@@ -3430,7 +3326,7 @@
   .shop-hero { padding: 5rem 0 3rem; min-height: auto; }
   .shop-hero h1 { font-size: 2.5rem; }
   .shop-hero p { font-size: 0.9375rem; }
-  .hoodie-mockup { max-width: 300px; }
+  .shop-hero-image { max-width: 300px; }
   .shop-drop { padding: 3.5rem 0; }
   .shop-drop-head { margin-bottom: 2.5rem; gap: 1rem; }
   .shop-drop-head h2 { font-size: 1.75rem; }

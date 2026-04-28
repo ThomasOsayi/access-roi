@@ -36,6 +36,9 @@ export default function Footer() {
             <h5>Explore</h5>
             <ul>
               <li>
+                <Link href="/join">Join the List</Link>
+              </li>
+              <li>
                 <Link href="/ebook">E-Book</Link>
               </li>
               <li>
@@ -44,9 +47,6 @@ export default function Footer() {
               <li>
                 <Link href="/session">Book a Session</Link>
               </li>
-              <li>
-                <Link href="/join">Join the List</Link>
-              </li>
             </ul>
           </div>
 
@@ -54,7 +54,7 @@ export default function Footer() {
             <h5>Resources</h5>
             <ul>
               <li>
-                <a href="#">Free worksheet</a>
+                <a href="#">Free webinars</a>
               </li>
               <li>
                 <a href="#">Newsletter</a>

@@ -1,136 +1,66 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import Ticker from "@/components/Ticker";
 
 export const metadata: Metadata = {
   title: "Shop — Access ROI",
   description:
-    "Hoodies, tees, and essentials built around the mantras. Printed on-demand via Printful.",
+    "Tees, hoodies, and essentials. Printed on-demand, shipped direct.",
 };
+
+const STORE_URL = "https://renaissance21.org/collections/access-roi";
 
 const PRODUCTS = [
   {
-    name: "Assets Hoodie",
-    line1: "ASSETS",
-    connector: "OVER",
-    line2: "LIABILITIES",
-    meta: "Heavyweight · Black",
-    price: "$65",
+    name: "Access ROI Team Hoodie",
+    image: "/products/team-hoodie.jpg",
+    meta: "Heavy Blend · Black",
+    price: "$50",
     badge: "Best Seller",
-    cream: false,
-    garment: "hoodie",
+    url: "https://renaissance21.org/collections/access-roi/products/access-roi-team-hoodie",
   },
   {
-    name: "Options Tee",
-    line1: "OPTIONS",
-    connector: "OVER",
-    line2: "OBLIGATIONS",
-    meta: "Heavyweight · Cream",
-    price: "$35",
+    name: "Access ROI Team Tee",
+    image: "/products/team-tee.jpg",
+    meta: "Softstyle · Black",
+    price: "$29.99",
+    badge: null,
+    url: "https://renaissance21.org/collections/access-roi/products/access-roi-team-tee",
+  },
+  {
+    name: "Access the Mind Tee",
+    image: "/products/mind-tee.jpg",
+    meta: "Softstyle · Black",
+    price: "$29.99",
     badge: "New",
-    cream: true,
-    garment: "tee",
+    url: "https://renaissance21.org/collections/access-roi/products/access-the-mind-tee",
   },
   {
-    name: "Data Tee",
-    line1: "DATA",
-    connector: "OVER",
-    line2: "DEBT",
-    meta: "Heavyweight · Black",
-    price: "$35",
+    name: "Options Over Obligations Tee",
+    image: "/products/options-tee.jpg",
+    meta: "Softstyle · Black",
+    price: "$29.99",
     badge: null,
-    cream: false,
-    garment: "tee",
+    url: "https://renaissance21.org/collections/access-roi/products/options-over-obligations-tee",
   },
   {
-    name: "Math Tee",
-    line1: "MATH",
-    connector: "OVER",
-    line2: "MASCOTS",
-    meta: "Heavyweight · Black",
-    price: "$35",
-    badge: null,
-    cream: false,
-    garment: "tee",
-  },
-  {
-    name: "Assets Tee",
-    line1: "ASSETS",
-    connector: "OVER",
-    line2: "LIABILITIES",
-    meta: "Heavyweight · Cream",
-    price: "$35",
-    badge: null,
-    cream: true,
-    garment: "tee",
-  },
-  {
-    name: "Logo Cap",
-    line1: "ACCESS",
-    connector: ",",
-    line2: "ROI",
+    name: "ROI Mindset Hat",
+    image: "/products/mindset-hat.jpg",
     meta: "Dad Cap · Black",
-    price: "$30",
-    badge: "Ltd.",
-    cream: false,
-    garment: "cap",
+    price: "$21.99",
+    badge: null,
+    url: "https://renaissance21.org/collections/access-roi/products/roi-mindset-hat",
+  },
+  {
+    name: "Access ROI Team Crew",
+    image: "/products/team-crew.jpg",
+    meta: "Premium Sweatshirt · Black",
+    price: "$44.99",
+    badge: "New",
+    url: "https://renaissance21.org/collections/access-roi/products/access-roi-team-crew",
   },
 ];
-
-function GarmentMockup({
-  garment,
-  line1,
-  connector,
-  line2,
-}: {
-  garment: string;
-  line1: string;
-  connector: string;
-  line2: string;
-}) {
-  const print = (
-    <div className="garment-print">
-      <span className="gp-line-1">{line1}</span>
-      <span className="gp-div">{connector}</span>
-      <span className="gp-line-2">{line2}</span>
-    </div>
-  );
-
-  if (garment === "hoodie") {
-    return (
-      <div className="garment-hoodie">
-        <div className="garment-hood" />
-        <div className="garment-sleeve-l" />
-        <div className="garment-sleeve-r" />
-        <div className="garment-body">
-          <div className="garment-strings" />
-          {print}
-          <div className="garment-pocket" />
-        </div>
-      </div>
-    );
-  }
-
-  if (garment === "cap") {
-    return (
-      <div className="garment-cap">
-        <div className="garment-button" />
-        <div className="garment-seam" />
-        <div className="garment-body">{print}</div>
-        <div className="garment-brim" />
-      </div>
-    );
-  }
-
-  return (
-    <div className="garment-tee">
-      <div className="garment-collar" />
-      <div className="garment-sleeve-l" />
-      <div className="garment-sleeve-r" />
-      <div className="garment-body">{print}</div>
-    </div>
-  );
-}
 
 export default function ShopPage() {
   return (
@@ -155,12 +85,12 @@ export default function ShopPage() {
                   <span className="italic">philosophy.</span>
                 </h1>
                 <p>
-                  Hoodies, tees, and essentials built around the mantras. No
-                  warehouse, no dead stock, every piece is printed and shipped
-                  when you order, straight from Printful.
+                  Tees, hoodies, and essentials built around the Access ROI
+                  brand. No warehouse, no dead stock, every piece is printed and
+                  shipped when you order.
                 </p>
                 <a
-                  href="https://printful.com"
+                  href={STORE_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-primary"
@@ -183,17 +113,17 @@ export default function ShopPage() {
                 </a>
               </div>
 
-              {/* HOODIE MOCKUP */}
-              <div className="hoodie-mockup">
-                <div className="hoodie-card">
-                  <div className="hoodie-tag">AR · 001</div>
-                  <div className="hoodie-text">
-                    <span className="ht-line-1">ASSETS</span>
-                    <span className="ht-divider">OVER</span>
-                    <span className="ht-line-2">LIABILITIES</span>
-                  </div>
-                  <div className="hoodie-price">$65</div>
-                </div>
+              {/* HERO PRODUCT IMAGE */}
+              <div className="shop-hero-image">
+                <Image
+                  src="/products/team-hoodie.jpg"
+                  alt="Access ROI Team Hoodie"
+                  width={900}
+                  height={900}
+                  className="shop-hero-img"
+                  priority
+                />
+                <div className="shop-hero-image-tag">$50</div>
               </div>
             </div>
           </div>
@@ -228,8 +158,7 @@ export default function ShopPage() {
               </h2>
             </div>
             <p>
-              A preview of what&apos;s in the shop. Every piece is
-              print-on-demand via Printful, click through to view sizes,
+              Every piece is print-on-demand, click through to view sizes,
               colorways, and check out.
             </p>
           </div>
@@ -238,22 +167,21 @@ export default function ShopPage() {
             {PRODUCTS.map((product) => (
               <a
                 key={product.name}
-                href="https://printful.com"
+                href={product.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="shop-product"
               >
-                <div
-                  className={`shop-product-visual ${product.cream ? "cream" : ""}`}
-                >
+                <div className="shop-product-visual">
                   {product.badge && (
                     <div className="shop-product-badge">{product.badge}</div>
                   )}
-                  <GarmentMockup
-                    garment={product.garment}
-                    line1={product.line1}
-                    connector={product.connector}
-                    line2={product.line2}
+                  <Image
+                    src={product.image}
+                    alt={product.name}
+                    width={900}
+                    height={900}
+                    className="shop-product-img"
                   />
                 </div>
                 <div className="shop-product-info">
@@ -288,8 +216,8 @@ export default function ShopPage() {
                 <div className="shop-how-num">01</div>
                 <h3>Pick your piece</h3>
                 <p>
-                  Choose the product, size, and colorway you want from the live
-                  Printful storefront.
+                  Choose the product, size, and colorway you want from the
+                  storefront.
                 </p>
               </div>
               <div className="shop-how-card">
@@ -304,8 +232,8 @@ export default function ShopPage() {
                 <div className="shop-how-num">03</div>
                 <h3>Shipped direct</h3>
                 <p>
-                  Printful handles fulfillment and shipping straight to your
-                  door, with tracking included.
+                  Fulfillment and shipping straight to your door, with tracking
+                  included.
                 </p>
               </div>
             </div>
@@ -324,16 +252,14 @@ export default function ShopPage() {
               Open the Drop
             </div>
             <h2>
-              The full shop
-              <br />
-              lives on <span className="italic">Printful.</span>
+              Browse the full <span className="italic">collection.</span>
             </h2>
             <p>
-              Browse every piece, every size, every colorway. Secure checkout
-              with free shipping over $75.
+              Every piece, every size, every colorway. Secure checkout with
+              tracked shipping worldwide.
             </p>
             <a
-              href="https://printful.com"
+              href={STORE_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary"
@@ -355,7 +281,7 @@ export default function ShopPage() {
               </svg>
             </a>
             <div className="final-cta-note" style={{ marginTop: "1.25rem" }}>
-              Live · Powered by Printful · Ships worldwide
+              Live · Print-on-demand · Ships worldwide
             </div>
           </div>
         </div>

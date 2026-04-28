@@ -104,7 +104,7 @@ export default function InterestForm() {
               </label>
               <label className="check">
                 <input type="checkbox" name="interests" value="worksheets" />
-                Free worksheets
+                Free webinars
               </label>
             </div>
           </div>
