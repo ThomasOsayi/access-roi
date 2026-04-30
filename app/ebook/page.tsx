@@ -3,9 +3,9 @@ import Link from "next/link";
 import CheckoutButton from "@/components/CheckoutButton";
 
 export const metadata: Metadata = {
-  title: "Know Before You Owe — The Access ROI E-Book",
+  title: "College Survival Guide — Access ROI E-Book",
   description:
-    "214 pages, 6 chapters, every worksheet you need to run your own ROI before you sign a student loan. Pre-order for $29.",
+    "A practical framework for making smarter college decisions through cost, tradeoffs, and return on investment. Pre-order for $29.",
 };
 
 export default function EbookPage() {
@@ -36,18 +36,17 @@ export default function EbookPage() {
             {/* PRICE CARD */}
             <div className="ebook-content">
               <div className="eyebrow ebook-eyebrow-header">
-                The Playbook · 214 Pages · 6 Chapters
+                The Playbook · E-Book Version
               </div>
               <h1>
-                Know
+                College
                 <br />
-                Before You <span className="italic">Owe.</span>
+                Survival <span className="italic">Guide.</span>
               </h1>
               <p>
-                A field guide to running the numbers on your education, built
-                from real student cases, BLS salary data, and aid-letter
-                translations. No fluff. No brochures. Just the math you
-                should&apos;ve seen before you signed anything.
+                A practical framework for making smarter college decisions
+                through cost, tradeoffs, and return on investment. Written by
+                MyLék McDowell, MBA — Founder of Access ROI.
               </p>
 
               <div className="price-card">
@@ -62,49 +61,25 @@ export default function EbookPage() {
                 <div className="price-features">
                   <div className="price-feat">
                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                      <path
-                        d="M3 9L7 13L15 5"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
+                      <path d="M3 9L7 13L15 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                     Instant PDF delivery on launch day
                   </div>
                   <div className="price-feat">
                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                      <path
-                        d="M3 9L7 13L15 5"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
+                      <path d="M3 9L7 13L15 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
-                    6 downloadable worksheets included
+                    Resource directory included
                   </div>
                   <div className="price-feat">
                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                      <path
-                        d="M3 9L7 13L15 5"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
+                      <path d="M3 9L7 13L15 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                     Free updates for life
                   </div>
                   <div className="price-feat">
                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                      <path
-                        d="M3 9L7 13L15 5"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
+                      <path d="M3 9L7 13L15 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                     30-day money-back guarantee
                   </div>
@@ -138,28 +113,29 @@ export default function EbookPage() {
           <div className="why-grid">
             <div className="why-card">
               <div className="why-num">01</div>
-              <h3>Sticker price is fiction.</h3>
+              <h3>The system is working as designed.</h3>
               <p>
-                The number on the brochure isn&apos;t what you&apos;ll pay, but
-                most students never learn how to read the real aid letter until
-                it&apos;s too late to negotiate.
+                It&apos;s not broken — it&apos;s built to keep you uninformed.
+                This book pulls back the curtain on how college pricing
+                actually works.
               </p>
             </div>
             <div className="why-card">
               <div className="why-num">02</div>
-              <h3>Your major matters more than your school.</h3>
+              <h3>Five numbers decide your future.</h3>
               <p>
-                Two students at the same university graduate with a 4x salary
-                gap. The difference isn&apos;t prestige, it&apos;s the major.
-                We show you the math.
+                Not your GPA, not your essays. Five financial numbers that
+                actually determine whether college pays off. Most students
+                never see them.
               </p>
             </div>
             <div className="why-card">
               <div className="why-num">03</div>
-              <h3>Break-even is a real number.</h3>
+              <h3>You can negotiate — and win.</h3>
               <p>
-                Every path has a year where the degree pays for itself. If that
-                year is 12, 18, or never, you deserve to know before you sign.
+                There&apos;s a script for the conversation no one teaches you.
+                This book hands it to you, with timing moves that can cut
+                your bill in half.
               </p>
             </div>
           </div>
@@ -174,53 +150,65 @@ export default function EbookPage() {
               What&apos;s Inside
             </div>
             <h2>
-              Six chapters.
-              <br />
-              Every <span className="italic">worksheet</span> you need.
+              The full <span className="italic">table of contents.</span>
             </h2>
             <p>
-              Each chapter ends with a fill-in-the-blank worksheet you can walk
-              through with your parents at the kitchen table.
+              Every chapter is built to give you a clear, actionable edge
+              in the college decision.
             </p>
           </div>
 
           <ul className="chapter-list">
             {[
               {
+                num: "Foreword",
+                title: "Before We Begin",
+                desc: "Setting the stage for a smarter approach to the biggest financial decision of your life.",
+              },
+              {
+                num: "Mission",
+                title: "Why I Wrote This For You",
+                desc: "The personal story behind Access ROI and why this information can't wait.",
+              },
+              {
                 num: "CH 01",
-                title: "The Sticker Price Lie",
-                desc: "How to read a real aid letter, and negotiate it up.",
-                pages: "p. 12 to 36",
+                title: "The System Is Not Broken, It's Working Exactly As Designed",
+                desc: "How the college pricing machine actually works — and why it depends on you not knowing.",
               },
               {
                 num: "CH 02",
-                title: "Majors by the Numbers",
-                desc: "Starting salary vs. ceiling, every major benchmarked against BLS data.",
-                pages: "p. 38 to 72",
+                title: "The Five Numbers That Actually Decide Your Financial Future",
+                desc: "Forget GPA and rankings. These are the numbers that determine whether college pays off.",
               },
               {
                 num: "CH 03",
-                title: "The Break-Even Framework",
-                desc: "The formula that tells you exactly when your degree pays for itself.",
-                pages: "p. 74 to 106",
+                title: "The Negotiation Script They Don't Want You To Have",
+                desc: "Word-for-word scripts and strategies for the financial aid conversation no one teaches.",
               },
               {
                 num: "CH 04",
-                title: "State School, Trade School, or Skip",
-                desc: "Every alternative path ranked by 10-year earnings potential.",
-                pages: "p. 108 to 144",
+                title: "Four Timing Moves That Can Cut Your College Bill in Half — Legally",
+                desc: "Strategic timing decisions that can save you tens of thousands without cutting corners.",
               },
               {
                 num: "CH 05",
-                title: "Negotiating Aid, Yes, You Can",
-                desc: "Scripts, templates, and timing for the conversation no one teaches.",
-                pages: "p. 146 to 186",
+                title: "Graduate With Options, Not Obligations",
+                desc: "How to structure your college path so you leave with freedom, not a 30-year IOU.",
               },
               {
-                num: "CH 06",
-                title: "The 10-Year Letter",
-                desc: "Why to write a letter to your future self before you sign anything.",
-                pages: "p. 188 to 214",
+                num: "Next Step",
+                title: "The Knowledge Is Yours. Now Use It.",
+                desc: "Your action plan for putting everything in this book to work starting today.",
+              },
+              {
+                num: "Resources",
+                title: "Every Tool, Website, and Program In One Place",
+                desc: "A complete directory of calculators, aid programs, negotiation templates, and more.",
+              },
+              {
+                num: "Glossary",
+                title: "Terms You Need to Know",
+                desc: "Every financial aid and college planning term explained in plain English.",
               },
             ].map((ch) => (
               <li key={ch.num} className="chapter-row">
@@ -229,7 +217,6 @@ export default function EbookPage() {
                   <h4 className="chapter-title">{ch.title}</h4>
                   <p>{ch.desc}</p>
                 </div>
-                <div className="chapter-pages">{ch.pages}</div>
               </li>
             ))}
           </ul>
@@ -271,7 +258,7 @@ export default function EbookPage() {
               },
               {
                 q: "What format is the book?",
-                a: "PDF on launch, designed for reading on both phone and desktop. Printable worksheets included. EPUB version coming shortly after.",
+                a: "PDF on launch, designed for reading on both phone and desktop. EPUB version coming shortly after.",
               },
             ].map((item) => (
               <details key={item.q} className="faq-item">

@@ -8,74 +8,100 @@ access-roi/
 |   |-- layout.tsx
 |   |-- page.tsx
 |   |-- globals.css
-|   |-- ebook/
+|   |-- admin/
 |   |   `-- page.tsx
-|   |-- shop/
+|   |-- api/
+|   |   |-- checkout/
+|   |   |   `-- route.ts
+|   |   |-- signups/
+|   |   |   `-- route.ts
+|   |   `-- admin/
+|   |       |-- auth/
+|   |       |   `-- route.ts
+|   |       |-- sales/
+|   |       |   `-- route.ts
+|   |       |-- signups/
+|   |       |   `-- route.ts
+|   |       `-- sessions/
+|   |           `-- route.ts
+|   |-- ebook/
+|   |   |-- page.tsx
+|   |   |-- checkout/
+|   |   |   `-- page.tsx
+|   |   `-- success/
+|   |       `-- page.tsx
+|   |-- join/
 |   |   `-- page.tsx
 |   |-- session/
 |   |   `-- page.tsx
-|   `-- join/
+|   `-- shop/
 |       `-- page.tsx
 |-- components/
-|   |-- Nav.tsx
+|   |-- CheckoutButton.tsx
+|   |-- EmbeddedCheckout.tsx
 |   |-- Footer.tsx
-|   |-- Ticker.tsx
-|   `-- InterestForm.tsx
+|   |-- InterestForm.tsx
+|   |-- Nav.tsx
+|   |-- QuickSignup.tsx
+|   |-- ScrollReveal.tsx
+|   `-- Ticker.tsx
+|-- lib/
+|   `-- firebase.ts
 |-- public/
-|-- .next/
-|-- node_modules/
 |-- AGENTS.md
 |-- CLAUDE.md
+|-- REPO_LAYOUT_SUMMARY.md
 |-- README.md
-|-- package.json
-|-- package-lock.json
-|-- postcss.config.mjs
-|-- next.config.ts
-|-- tsconfig.json
 |-- eslint.config.mjs
 |-- next-env.d.ts
-`-- .gitignore
+|-- next.config.ts
+|-- package-lock.json
+|-- package.json
+|-- postcss.config.mjs
+`-- tsconfig.json
 ```
 
 ## What Has Been Implemented
 
-- Multi-page marketing site scaffolded under the App Router with dedicated routes for `Home`, `E-Book`, `Shop`, `Session`, and `Join`.
-- Shared shell is wired in `app/layout.tsx` with global navigation and footer components (`Nav` and `Footer`).
-- `Nav` component includes route-aware active links, scroll state behavior, and mobile menu toggle.
-- `Footer` component includes branded mark, grouped links, and social links with corrected JSX structure.
-- `Ticker` component exists for repeated messaging/brand mantra display between sections.
-- `InterestForm` component is integrated on the Join page with a working local submit success state.
+- Multi-route App Router site is live across `Home`, `E-Book`, `Shop`, `Session`, `Join`, and `Admin`.
+- Shared shell is wired through `app/layout.tsx` with reusable `Nav` and `Footer`.
+- Home page includes branded sections plus a quick-conversion signup strip (`QuickSignup`) that writes to backend signup storage.
+- Join page uses `InterestForm` for the full intake flow (name, email, role, stage, interests) with success/error states.
+- E-book flow now includes:
+  - marketing page (`/ebook`),
+  - dedicated checkout page (`/ebook/checkout`),
+  - Stripe success page (`/ebook/success`).
+- Checkout uses a backend-created PaymentIntent (`/api/checkout`) and frontend embedded Stripe Elements (`EmbeddedCheckout`).
+- Admin dashboard (`/admin`) includes login, logout, password change, data loading, tabbed views, search/filter, charts, and tables.
+
+## API + Data Integrations
+
+- **Firebase (client SDK + Firestore):**
+  - initialized in `lib/firebase.ts` via environment variables,
+  - stores signup records in `signups`,
+  - stores admin settings (`settings/admin`) and Calendly token (`settings/calendly`).
+- **Public API routes:**
+  - `POST /api/signups` persists quick and full-form leads,
+  - `POST /api/checkout` creates Stripe PaymentIntents for e-book pre-orders.
+- **Admin API routes (cookie-auth gated):**
+  - `POST|DELETE|PUT /api/admin/auth` for login/logout/password change,
+  - `GET /api/admin/sales` aggregates Stripe payments and revenue metrics,
+  - `GET /api/admin/signups` returns latest leads plus source/role/interest metrics,
+  - `POST|GET /api/admin/sessions` validates/saves Calendly token and fetches session analytics.
 
 ## Styling System
 
-- `app/globals.css` contains a single consolidated design system:
-  - root variables (color tokens, type scales, spacing behavior),
-  - shared utility styles (`container`, typography helpers, buttons, breadcrumbs),
-  - page-level section styles for Home, E-Book, Shop, Session, and Join.
-- Homepage visual sections implemented: hero, stat grid, three-path cards, manifesto, and final CTA.
-- E-Book page styles implemented: hero/book layout, price card, why section, chapter list, FAQ, and final CTA.
-- Shop page styles implemented: hero, featured hoodie visual, product grid, ordering flow section, and final CTA.
-- Session page styles implemented: hero with session card, agenda timeline, audience fit section, calendly placeholder, and final CTA.
-- Join page styles implemented: hero/grid, benefits list, form card, input controls, checkbox styling, and success state.
-- Detailed garment mockup CSS is implemented for Shop product cards:
-  - hoodie mockup,
-  - tee mockup,
-  - cap mockup,
-  - cream variant overrides,
-  - print text styles.
-
-## Notable Cleanup and Stability Work
-
-- Stray home-directory `package-lock.json` and `node_modules` were removed to eliminate project-root ambiguity.
-- Unused Tailwind dependencies were removed from `package.json`.
-- `postcss.config.mjs` was simplified to an empty plugin map for the custom CSS approach.
-- Multiple JSX parse issues were resolved across pages where anchor tags were missing opening `<a` tags.
-- Page-level lint errors were iteratively corrected; current edited files lint clean.
-- Visible copy text was normalized by replacing em-dash sentence separators with comma-based phrasing where requested.
+- `app/globals.css` is the single design system source:
+  - tokens, typography, spacing, utilities, button/link patterns,
+  - per-page section styling for marketing pages,
+  - admin dashboard visual system,
+  - Stripe checkout form styling and state styles.
+- Site uses custom CSS only (no Tailwind runtime styling workflow).
 
 ## Current Architecture Snapshot
 
-- **Framework:** Next.js App Router (`next@16`).
-- **Styling approach:** Custom global CSS only (no Tailwind runtime usage).
-- **Rendering approach:** Mostly static page components with selective client interactivity (`Nav`, `InterestForm`).
-- **Design direction:** High-contrast brand aesthetic using tokenized variables and reusable section patterns.
+- **Framework:** Next.js App Router on `next@16`.
+- **UI stack:** React 19 + TypeScript components with selective client-side interactivity.
+- **Payments:** Stripe (`stripe`, `@stripe/react-stripe-js`, `@stripe/stripe-js`).
+- **Data:** Firestore for leads and admin configuration.
+- **Admin auth model:** HTTP-only cookie token generated by admin auth route.
