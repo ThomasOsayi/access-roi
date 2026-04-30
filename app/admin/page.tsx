@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
+import { db } from "@/lib/firebase";
+import { collection, query, orderBy, limit, getDocs } from "firebase/firestore";
 
 type Sale = {
   id: string;
@@ -316,14 +318,75 @@ export default function AdminPage() {
   const fetchData = useCallback(async () => {
     setLoading(true);
     try {
-      const [salesRes, signupsRes, sessionsRes] = await Promise.all([
+      // Sales and sessions still go through API routes (Stripe / Calendly)
+      const [salesRes, sessionsRes] = await Promise.all([
         fetch("/api/admin/sales"),
-        fetch("/api/admin/signups"),
         fetch("/api/admin/sessions"),
       ]);
       if (salesRes.ok) setSalesData(await salesRes.json());
-      if (signupsRes.ok) setSignupsData(await signupsRes.json());
       if (sessionsRes.ok) setSessionsData(await sessionsRes.json());
+
+      // Signups read directly from Firestore (client SDK works in browser)
+      const q = query(
+        collection(db, "signups"),
+        orderBy("createdAt", "desc"),
+        limit(200)
+      );
+      const snapshot = await getDocs(q);
+
+      const signups: Signup[] = snapshot.docs.map((doc) => {
+        const data = doc.data();
+        return {
+          id: doc.id,
+          firstName: data.firstName || "",
+          lastName: data.lastName || "",
+          email: data.email || "",
+          role: data.role || "",
+          stage: data.stage || "",
+          interests: data.interests || [],
+          source: data.source || "full-form",
+          createdAt: data.createdAt?.toDate?.()?.toISOString() || null,
+        };
+      });
+
+      const totalSignups = signups.length;
+
+      const oneWeekAgo = new Date();
+      oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+      const thisWeekSignups = signups.filter(
+        (s) => s.createdAt && new Date(s.createdAt) > oneWeekAgo
+      ).length;
+
+      const fromFullForm = signups.filter((s) => s.source === "full-form").length;
+      const fromQuickSignup = signups.filter(
+        (s) => s.source === "quick-signup"
+      ).length;
+
+      const byRole: Record<string, number> = {};
+      signups.forEach((s) => {
+        if (s.role) byRole[s.role] = (byRole[s.role] || 0) + 1;
+      });
+
+      const byInterest: Record<string, number> = {};
+      signups.forEach((s) => {
+        if (Array.isArray(s.interests)) {
+          s.interests.forEach((interest) => {
+            byInterest[interest] = (byInterest[interest] || 0) + 1;
+          });
+        }
+      });
+
+      setSignupsData({
+        signups,
+        metrics: {
+          totalSignups,
+          thisWeekSignups,
+          fromFullForm,
+          fromQuickSignup,
+          byRole,
+          byInterest,
+        },
+      });
     } catch (err) {
       console.error("Fetch error:", err);
     }
