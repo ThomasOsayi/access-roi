@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { db } from "@/lib/firebase";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 export default function InterestForm() {
   const [submitted, setSubmitted] = useState(false);
@@ -17,27 +19,21 @@ export default function InterestForm() {
     const interests: string[] = [];
     formData.getAll("interests").forEach((v) => interests.push(v as string));
 
-    const body = {
-      firstName: formData.get("firstName") as string,
-      lastName: formData.get("lastName") as string,
-      email: formData.get("email") as string,
-      role: formData.get("role") as string,
-      stage: formData.get("stage") as string,
-      interests,
-      source: "full-form",
-    };
-
     try {
-      const res = await fetch("/api/signups", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
+      await addDoc(collection(db, "signups"), {
+        firstName: (formData.get("firstName") as string) || "",
+        lastName: (formData.get("lastName") as string) || "",
+        email: formData.get("email") as string,
+        role: (formData.get("role") as string) || "",
+        stage: (formData.get("stage") as string) || "",
+        interests,
+        source: "full-form",
+        createdAt: serverTimestamp(),
       });
 
-      if (!res.ok) throw new Error("Failed to submit");
-
       setSubmitted(true);
-    } catch {
+    } catch (err) {
+      console.error("Signup error:", err);
       setError("Something went wrong. Please try again.");
       setLoading(false);
     }

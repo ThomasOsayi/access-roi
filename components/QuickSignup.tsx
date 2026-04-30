@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { db } from "@/lib/firebase";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 export default function QuickSignup() {
   const [submitted, setSubmitted] = useState(false);
@@ -14,20 +16,16 @@ export default function QuickSignup() {
     setLoading(true);
 
     try {
-      const res = await fetch("/api/signups", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          firstName,
-          email,
-          source: "quick-signup",
-        }),
+      await addDoc(collection(db, "signups"), {
+        firstName,
+        email,
+        source: "quick-signup",
+        createdAt: serverTimestamp(),
       });
 
-      if (!res.ok) throw new Error("Failed");
-
       setSubmitted(true);
-    } catch {
+    } catch (err) {
+      console.error("Signup error:", err);
       setLoading(false);
     }
   }

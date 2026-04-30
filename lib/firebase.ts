@@ -15,9 +15,7 @@ let db: ReturnType<typeof getFirestore>;
 
 if (getApps().length === 0) {
   const app = initializeApp(firebaseConfig);
-  db = initializeFirestore(app, {
-    experimentalForceLongPolling: true,
-  });
+  db = initializeFirestore(app, {});
 } else {
   db = getFirestore(getApps()[0]);
 }
