@@ -22,26 +22,30 @@ export async function GET() {
   }
 
   try {
-    // Get recent payment intents
+    // Expand charges so we can read billing_details
     const payments = await stripe.paymentIntents.list({
       limit: 100,
+      expand: ["data.latest_charge"],
     });
 
     const completedPayments = payments.data.filter(
       (p) => p.status === "succeeded"
     );
 
-    // Build sales list
-    const sales = completedPayments.map((p) => ({
-      id: p.id,
-      amount: p.amount / 100,
-      currency: p.currency,
-      status: p.status,
-      email: p.receipt_email || "—",
-      name: p.shipping?.name || "—",
-      created: new Date(p.created * 1000).toISOString(),
-      description: p.description || "E-Book Pre-Order",
-    }));
+    const sales = completedPayments.map((p) => {
+      const charge = p.latest_charge as Stripe.Charge | null;
+      const billing = charge?.billing_details;
+      return {
+        id: p.id,
+        amount: p.amount / 100,
+        currency: p.currency,
+        status: p.status,
+        email: billing?.email || p.receipt_email || "—",
+        name: billing?.name || p.shipping?.name || "—",
+        created: new Date(p.created * 1000).toISOString(),
+        description: p.description || "E-Book Pre-Order",
+      };
+    });
 
     // Calculate metrics
     const totalRevenue = completedPayments.reduce(

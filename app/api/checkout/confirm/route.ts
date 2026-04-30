@@ -15,12 +15,17 @@ export async function GET(request: Request) {
   }
 
   try {
-    const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
+    // Expand latest_charge so we can read billing_details
+    const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId, {
+      expand: ["latest_charge"],
+    });
+    const charge = paymentIntent.latest_charge as Stripe.Charge | null;
+    const billing = charge?.billing_details;
 
     return NextResponse.json({
       status: paymentIntent.status,
-      email: paymentIntent.receipt_email || paymentIntent.shipping?.name || null,
-      name: paymentIntent.shipping?.name || null,
+      email: billing?.email || paymentIntent.receipt_email || null,
+      name: billing?.name || null,
       amount: paymentIntent.amount / 100,
     });
   } catch (error) {
