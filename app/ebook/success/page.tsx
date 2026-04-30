@@ -1,144 +1,117 @@
-"use client";
-
-import { useEffect, useState, Suspense } from "react";
+import type { Metadata } from "next";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
-import { db } from "@/lib/firebase";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
-function SuccessContent() {
-  const searchParams = useSearchParams();
-  const paymentIntentId = searchParams.get("payment_intent");
-  const [status, setStatus] = useState<"loading" | "success" | "error">("loading");
-  const [customerEmail, setCustomerEmail] = useState<string | null>(null);
-
-  useEffect(() => {
-    async function recordPreorder() {
-      if (!paymentIntentId) {
-        setStatus("error");
-        return;
-      }
-
-      try {
-        // Confirm payment + get customer info from Stripe via API route
-        const res = await fetch(
-          `/api/checkout/confirm?payment_intent=${paymentIntentId}`
-        );
-
-        if (!res.ok) {
-          setStatus("error");
-          return;
-        }
-
-        const data = await res.json();
-
-        if (data.status !== "succeeded") {
-          setStatus("error");
-          return;
-        }
-
-        setCustomerEmail(data.email);
-
-        // Add to signups list with source: "preorder"
-        // Guard against duplicates by storing payment ID — if user refreshes, we skip
-        const alreadyRecorded = sessionStorage.getItem(
-          `preorder_recorded_${paymentIntentId}`
-        );
-
-        if (!alreadyRecorded && data.email) {
-          await addDoc(collection(db, "signups"), {
-            firstName: data.name?.split(" ")[0] || "",
-            lastName: data.name?.split(" ").slice(1).join(" ") || "",
-            email: data.email,
-            role: "",
-            stage: "",
-            interests: ["ebook"],
-            source: "preorder",
-            createdAt: serverTimestamp(),
-          });
-          sessionStorage.setItem(`preorder_recorded_${paymentIntentId}`, "1");
-        }
-
-        setStatus("success");
-      } catch (err) {
-        console.error("Success page error:", err);
-        setStatus("error");
-      }
-    }
-
-    recordPreorder();
-  }, [paymentIntentId]);
-
-  return (
-    <section className="success-page">
-      <div className="container">
-        {status === "loading" && (
-          <div className="success-card">
-            <div className="admin-spinner" />
-            <p>Confirming your order...</p>
-          </div>
-        )}
-
-        {status === "success" && (
-          <div className="success-card">
-            <div className="success-icon">
-              <svg width="40" height="40" viewBox="0 0 28 28" fill="none">
-                <path
-                  d="M6 14L12 20L22 8"
-                  stroke="currentColor"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </div>
-            <h1>
-              You&apos;re <span className="italic">in.</span>
-            </h1>
-            <p className="success-lead">
-              Your pre-order is confirmed. We just sent a receipt to{" "}
-              <strong>{customerEmail || "your email"}</strong>.
-            </p>
-            <div className="success-next">
-              <h3>What happens now</h3>
-              <ul>
-                <li>You&apos;ll get the PDF the moment it launches.</li>
-                <li>Free updates for life — no extra charges.</li>
-                <li>You&apos;re on the list for launch-day bonuses.</li>
-              </ul>
-            </div>
-            <div className="success-actions">
-              <Link href="/" className="btn-primary">
-                Back to home
-              </Link>
-              <Link href="/ebook" className="btn-secondary">
-                E-book details
-              </Link>
-            </div>
-          </div>
-        )}
-
-        {status === "error" && (
-          <div className="success-card">
-            <h1>Something went wrong.</h1>
-            <p>
-              We couldn&apos;t confirm your order. If you were charged, your
-              payment is safe — please email us and we&apos;ll sort it out.
-            </p>
-            <Link href="/ebook" className="btn-primary">
-              Back to e-book
-            </Link>
-          </div>
-        )}
-      </div>
-    </section>
-  );
-}
+export const metadata: Metadata = {
+  title: "You're In — Access ROI",
+  description: "Your pre-order is confirmed.",
+};
 
 export default function SuccessPage() {
   return (
-    <Suspense fallback={<div className="success-page" />}>
-      <SuccessContent />
-    </Suspense>
+    <div className="sp-bg">
+      <section className="sp-page">
+        <div className="sp-check-ring">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+            <path
+              d="M10 20L17 27L30 13"
+              stroke="currentColor"
+              strokeWidth="4"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </div>
+
+        <div className="sp-headline">
+          <h1>
+            You&apos;re <span className="sp-green">in.</span>
+          </h1>
+        </div>
+        <p className="sp-sub">
+          Your pre-order is locked. We&apos;ll email you the PDF the second the
+          book goes live. A receipt from Stripe is already in your inbox.
+        </p>
+
+        <div className="sp-card">
+          <div className="sp-card-header">
+            <div className="sp-card-tag">Order Confirmed</div>
+          </div>
+          <div className="sp-card-product">
+            <div className="sp-book-mini">
+              <span>College Survival Guide</span>
+            </div>
+            <div className="sp-product-info">
+              <h3>College Survival Guide</h3>
+              <p>E-Book Pre-Order · PDF</p>
+            </div>
+            <div className="sp-product-price">$29</div>
+          </div>
+          <div className="sp-card-details">
+            <div className="sp-detail-row">
+              <span className="sp-detail-label">Format</span>
+              <span className="sp-detail-value">PDF + Resource Directory</span>
+            </div>
+            <div className="sp-detail-row">
+              <span className="sp-detail-label">Delivery</span>
+              <span className="sp-detail-value">Email on launch, Q2 2026</span>
+            </div>
+            <div className="sp-detail-row">
+              <span className="sp-detail-label">Guarantee</span>
+              <span className="sp-detail-value sp-detail-green">
+                30-day money back
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div className="sp-next">
+          <div className="sp-next-title">What happens next</div>
+          <div className="sp-steps-row">
+            <div className="sp-step">
+              <div className="sp-step-num">01</div>
+              <h4>Check your inbox</h4>
+              <p>A receipt from Stripe just landed. Save it.</p>
+            </div>
+            <div className="sp-step">
+              <div className="sp-step-num">02</div>
+              <h4>We finish the book</h4>
+              <p>Final edits are underway. You&apos;re in the first batch.</p>
+            </div>
+            <div className="sp-step">
+              <div className="sp-step-num">03</div>
+              <h4>PDF hits your email</h4>
+              <p>Launch day, instant delivery. No action needed from you.</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="sp-actions">
+          <Link href="/" className="btn-primary">
+            Back to Home
+            <svg
+              className="arrow"
+              width="14"
+              height="14"
+              viewBox="0 0 14 14"
+              fill="none"
+            >
+              <path
+                d="M1 7H13M13 7L7 1M13 7L7 13"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+              />
+            </svg>
+          </Link>
+          <Link href="/shop" className="sp-btn-outline">
+            Browse the Merch
+          </Link>
+        </div>
+
+        <div className="sp-footer-note">
+          Questions? Reach out at hello@accessroi.com
+        </div>
+      </section>
+    </div>
   );
 }
